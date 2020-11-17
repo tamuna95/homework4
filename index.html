@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- <link rel  = "stylesheet" type = "text/css" href = "style.css">  -->
+        <title>
+
+        </title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+       <h1>Task list</h1>
+       <form action="index.php">
+
+        <input  class = "taskinput"type="text">
+        <button type="submit" >Add Task</button>
+        <ul>
+            
+        </ul>
+        
+           
+       </form>
+       <button class = "emptyist">Clear All</button>
+
+       
+
+        <script>
+            let input =  document.querySelector('input.taskinput');
+            let ul = document.querySelector('ul');
+            let btn = document.querySelector('button');
+            let form =document.querySelector('form');
+            let checkbox = document.querySelector('input');
+
+
+            form.addEventListener('submit',(event)=> {
+                event.preventDefault();
+                
+               //1)get input value
+               let value = input.value
+
+                if(value.length === 0) {
+                    alert("text is required")
+                    return;
+                }
+                
+               
+               //2) add value to the order list
+                let li =  document.createElement('li');
+                let button = document.createElement('button');
+                let checkbox = document.createElement('input');
+                checkbox.type = "checkbox";
+
+
+                
+
+                button.textContent ='delete';
+                button.addEventListener('click',() =>{
+                    console.log("click");
+                    li.remove();
+
+                });
+                checkbox.addEventListener('checked',()=>{
+                    console.log('ckeck')
+                    
+                });
+
+                li.textContent = value
+                li.appendChild(checkbox);
+
+
+                button.textContent = "delete";
+                li.appendChild(button);
+
+
+
+                ul.appendChild(li);
+
+               //3) clear the input
+                 input.value = '';
+
+           });
+
+           document.querySelector('.emptyist').addEventListener('click',()=>{
+                ul.innerHTML ='';
+           });
+           
+            
+        </script>
+    </body>
+</html>
